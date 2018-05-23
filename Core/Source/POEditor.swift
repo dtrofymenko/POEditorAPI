@@ -94,14 +94,16 @@ public final class POEditor: WebService
 	/// Expert project translations into a file. The URL to the file is provided in the completion handler and you need to download it.
 	/// - parameter projectID: The project identifier
 	/// - parameter languageCode: The language code to export
+   /// - parameter tags: Tags to export
 	/// - parameter type: The file type to generate
 	/// - parameter completion: The completion block receiving an URL for the exported file if successful.
-	public func exportProjectTranslation(projectID: Int, languageCode: String, type: ExportFileType, completion: WebServiceCompletionHandler<URL>?)
+	public func exportProjectTranslation(projectID: Int, languageCode: String, tags: [String], type: ExportFileType, completion: WebServiceCompletionHandler<URL>?)
 	{
 		let parameters = ["api_token" : token,
 		                  "id": projectID,
 		                  "language": languageCode,
-		                  "type": type] as [String : Any]
+		                  "type": type,
+                        "tags": tags] as [String : Any]
 
 		let path = endpoint.appendingPathComponent("projects/export")
 		let request = URLRequest.formPost(url: path, fields: parameters)

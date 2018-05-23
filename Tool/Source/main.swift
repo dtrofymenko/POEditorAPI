@@ -184,8 +184,16 @@ if settings.outputFolder == nil
 	}
 }
 
-// save project settings
+// Show tags to select
+if settings.tags == nil {
+   print("\nEnter tags>", terminator: "")
+   if let string = readLine(strippingNewline: true), 0 < string.count {
+      let tags = string.split(separator: ",").map() { String($0.trimmingCharacters(in: CharacterSet.whitespaces)) }
+      settings.tags = tags
+   }
+}
 
+// save project settings
 if settings.isDirty
 {
 	do

@@ -167,7 +167,7 @@ func export(with settings: Settings, format: POEditor.ExportFileType = .json, fo
 		
 		var exportError: Error?
 		
-		poeditor.exportProjectTranslation(projectID: settings.projectID, languageCode: code, type: format) { (result) in
+		poeditor.exportProjectTranslation(projectID: settings.projectID, languageCode: code, tags: settings.tags, type: format) { (result) in
 			
 			switch result
 			{

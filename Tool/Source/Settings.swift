@@ -37,6 +37,15 @@ struct Settings
 			isDirty = true
 		}
 	}
+
+   /// The language codes to export
+   var tags: [String]!
+   {
+      didSet
+      {
+         isDirty = true
+      }
+   }
 	
 	/// The path relative to the CWD where exporting outputs to
 	var outputFolder: String?
@@ -71,6 +80,7 @@ struct Settings
 				token = settings["token"] as? String
 				projectID = settings["projectID"] as? Int
 				languages = settings["languages"] as? [String]
+            tags = settings["tags"] as? [String]
 				outputFolder = settings["outputFolder"] as? String
 			}
 		}
@@ -90,7 +100,8 @@ struct Settings
 
 		var dict = ["token": token,
 		            "projectID": projectID,
-		            "languages": languages] as [String : Any]
+		            "languages": languages,
+                  "tags": tags] as [String : Any]
 		
 		dict["outputFolder"] = outputFolder
 		
